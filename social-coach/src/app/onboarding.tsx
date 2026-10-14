@@ -16,7 +16,7 @@ export default function Onboarding() {
     <SafeAreaView style={{ flex: 1 }} edges={['top']}>
       <Screen>
         <H1>{APP_NAME}</H1>
-        <Body>Practice real conversations before they happen.</Body>
+        <Body>Your buddy for practicing real conversations before they happen.</Body>
 
         <Card>
           <H2>How it works</H2>

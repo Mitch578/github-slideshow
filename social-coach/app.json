@@ -1,16 +1,16 @@
 {
   "expo": {
-    "name": "Social Coach",
-    "slug": "social-coach",
+    "name": "Norm",
+    "slug": "norm",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "socialcoach",
+    "scheme": "norm",
     "userInterfaceStyle": "automatic",
     "ios": {
       "icon": "./assets/expo.icon",
       "supportsTablet": false,
-      "bundleIdentifier": "com.REPLACE_ME.socialcoach"
+      "bundleIdentifier": "com.REPLACE_ME.norm"
     },
     "android": {
       "adaptiveIcon": {

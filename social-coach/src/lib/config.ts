@@ -1,6 +1,6 @@
 import Constants from 'expo-constants';
 
-export const APP_NAME = 'Social Coach'; // working name, see PROGRESS.md
+export const APP_NAME = 'Norm';
 
 // Bump when the consent screen text changes. Must match COACH_CONSENT_VERSION
 // in supabase/functions/coach/config.ts.

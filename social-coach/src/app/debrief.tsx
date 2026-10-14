@@ -36,7 +36,7 @@ export default function DebriefScreen() {
     <Screen>
       <H1>{session?.title ?? 'Debrief'}</H1>
       {!session?.debrief && !error && <ActivityIndicator />}
-      {!session?.debrief && !error && <Body muted>Your coach is reading the conversation…</Body>}
+      {!session?.debrief && !error && <Body muted>Norm is reading the conversation…</Body>}
       {error && (
         <>
           <Body>{error}</Body>

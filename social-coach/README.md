@@ -1,6 +1,6 @@
-# Social Coach (working name)
+# Norm
 
-AI social coach for iPhone. Expo SDK 57 (React Native, TypeScript, Expo Router) + Supabase (Postgres, anonymous auth, Edge Functions) + Claude via the Anthropic Messages API, called only from the server.
+Norm is an AI social coach for iPhone, like a buddy who helps you practice. Expo SDK 57 (React Native, TypeScript, Expo Router) + Supabase (Postgres, anonymous auth, Edge Functions) + Claude via the Anthropic Messages API, called only from the server.
 
 ```
 src/app/                    screens (Expo Router)

@@ -1,4 +1,4 @@
--- Social Coach initial schema. Every table is keyed to auth.users and locked
+-- Norm initial schema. Every table is keyed to auth.users and locked
 -- down with RLS so a user can only read/write their own rows. The coach Edge
 -- Function writes with the user's JWT, so RLS applies there too; only
 -- delete_all uses the service role (to remove the auth user).

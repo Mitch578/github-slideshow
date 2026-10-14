@@ -1,6 +1,6 @@
 # PROGRESS
 
-Last updated: 2026-10-13
+Last updated: 2026-10-14
 
 ## Done
 
@@ -10,7 +10,8 @@ Last updated: 2026-10-13
 - **All MVP screens built:** onboarding, AI consent, home (scenarios + difficulty), describe-your-own, practice chat (12-turn cap, End anytime), debrief, prep, history, session detail, settings (withdraw consent, delete all data, privacy/support links, version).
 - **Mock AI** runs when no Supabase env vars are set, so the phone test doesn't depend on the backend.
 - **Backend written, not deployed:** migration (profiles, sessions, messages, debriefs, usage, all with RLS; `usage_daily` view), Edge Function `coach` (consent check, 20 turns/day cap, 12 turns/session cap, max tokens, usage logging, delete-all incl. auth user).
-- **Prompts** versioned (`partner-v1`, `coach-v1`); the version is stored on each session.
+- **Name:** Norm (owner decision 2026-10-14). The coach prompt speaks as Norm.
+- **Prompts** versioned (`partner-v1`, `coach-v2`); the version is stored on each session.
 - **Crisis path:** shared detector runs on device (a crisis message never leaves the phone) and again on the server. The partner model can also flag with a marker. The session gets locked, 988 resources are shown, and coaching doesn't resume. Tests: `npm test`, 7/7 passing.
 - **Checks passing:** `tsc --noEmit` (app), Edge Function typecheck against `@anthropic-ai/sdk@0.133.0` types (via a Deno shim, since Deno itself wasn't run), `expo lint`, and an offline `expo export --platform ios` bundle (1177 modules). No API key strings found in the bundle.
 
@@ -24,10 +25,10 @@ Last updated: 2026-10-13
 
 ## Open decisions
 
-- Working name (placeholder: "Social Coach").
 - Apple enrollment: individual or company (D-U-N-S).
 - Repo: the app currently lives in `social-coach/` inside `mitch578/github-slideshow`. A dedicated repo would be cleaner.
-- iOS bundle identifier: placeholder `com.REPLACE_ME.socialcoach` in app.json.
+- iOS bundle identifier: placeholder `com.REPLACE_ME.norm` in app.json.
+- App Store name: "Norm" is the app name (owner decision 2026-10-14). UNKNOWN whether "Norm" is free on the App Store; names must be unique. Fallbacks to check when creating the App Store Connect record: "Norm: Social Coach", "Norm – AI Social Coach".
 - Prompt location: the spec says `/server/prompts/`. They live in `supabase/functions/_shared/prompts/` because the Edge Function deploy bundles from `supabase/functions/` (ASSUMPTION: importing from outside that folder may not bundle; not tested).
 
 ## UNKNOWN / ASSUMPTION
