@@ -16,9 +16,11 @@ Last updated: 2026-10-14
 - **Crisis path:** shared detector runs on device (a crisis message never leaves the phone) and again on the server. The partner model can also flag with a marker. The session gets locked, 988 resources are shown, and coaching doesn't resume. Tests: `npm test`, 7/7 passing.
 - **Checks passing:** `tsc --noEmit` (app), Edge Function typecheck against `@anthropic-ai/sdk@0.133.0` types (via a Deno shim, since Deno itself wasn't run), `expo lint`, and an offline `expo export --platform ios` bundle (1177 modules). No API key strings found in the bundle.
 
+- **Milestone (2026-10-14): Norm runs on the owner's iPhone in Expo Go, demo mode.** Expo Go's dev menu shows "Norm, SDK version: 57.0.0" (owner screenshot). Owner's Mac: Node v24.21.0, git 2.50.1. This confirms App Store Expo Go is on SDK 57 as of today, and that AsyncStorage loads in Expo Go (the onboarding screen rendered).
+
 ## Next
 
-1. Owner runs the app in Expo Go on the iPhone in demo mode. Owner is phone-only right now, so the QR flow is blocked. Option being set up: publish with EAS Update from the cloud container. That needs expo.dev hosts allowed in the environment network policy plus an EXPO_TOKEN environment variable. UNKNOWN whether App Store Expo Go opens EAS Update links for this project; verify.
+1. Owner clicks through the mock flow on the phone and reports issues (keyboard over the chat box is the main unknown).
 2. Owner creates the Supabase project and Anthropic API key, then we deploy (README → "Connect the real backend").
 3. Real end-to-end test on the phone: finish a scenario, see a debrief.
 4. Measure tokens per session from `usage` and report cost per practice session.
@@ -32,12 +34,10 @@ Last updated: 2026-10-14
 
 ## UNKNOWN / ASSUMPTION
 
-- UNKNOWN: Whether Expo Go on the owner's phone is still on SDK 57 today. expo.dev was unreachable from the build container. A Sept 2026 release note found via search says the App Store Expo Go supports SDK 57.
 - UNKNOWN: Expo Go iOS requiring the same Expo account in the CLI and the app comes from the owner's prompt and wasn't re-verified (expo.dev blocked).
 - ASSUMPTION: `npx expo start --tunnel` is still Expo's tunneling option. Not re-verified against current docs.
 - ASSUMPTION: Supabase CLI commands in the README (`link`, `db push`, `secrets set`, `functions deploy`) come from memory plus community sources, not current official docs (supabase.com was unreachable).
 - ASSUMPTION: Supabase now documents `SUPABASE_ANON_KEY` / `SUPABASE_SERVICE_ROLE_KEY` as legacy, and new projects get `SUPABASE_PUBLISHABLE_KEYS` / `SUPABASE_SECRET_KEYS` (JSON). The function accepts either. The dictionary shape (a `default` entry) is unverified. Check on first deploy.
-- ASSUMPTION: `@react-native-async-storage/async-storage@2.2.0` (the version SDK 57's `bundledNativeModules.json` pins) is included in Expo Go. Verify on the phone.
 - ASSUMPTION: Apple 5.1.1(v) account deletion and anonymous auth. Delete-all ships either way.
 - Models (verified against Anthropic's model reference cached 2026-10-06): partner `claude-haiku-5-5` (effort low), coach `claude-sonnet-5-5` (effort medium, JSON-schema structured output, server-side refusal fallback beta `server-side-fallback-2026-07-01`). Pricing listed there: Haiku 5.5 $0.10/$0.50 per M tokens, Sonnet 5.5 $2/$10. Cost per session is UNKNOWN until we measure.
 - 988 crisis line wording must be re-confirmed before shipping.
