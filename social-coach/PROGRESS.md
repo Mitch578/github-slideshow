@@ -10,6 +10,7 @@ Last updated: 2026-10-14
 - **All MVP screens built:** onboarding, AI consent, home (scenarios + difficulty), describe-your-own, practice chat (12-turn cap, End anytime), debrief, prep, history, session detail, settings (withdraw consent, delete all data, privacy/support links, version).
 - **Mock AI** runs when no Supabase env vars are set, so the phone test doesn't depend on the backend.
 - **Backend written, not deployed:** migration (profiles, sessions, messages, debriefs, usage, all with RLS; `usage_daily` view), Edge Function `coach` (consent check, 20 turns/day cap, 12 turns/session cap, max tokens, usage logging, delete-all incl. auth user).
+- **Decided 2026-10-14:** Apple enrollment as an individual; app stays in `social-coach/` inside `mitch578/github-slideshow`.
 - **Name:** Norm (owner decision 2026-10-14). The coach prompt speaks as Norm.
 - **Prompts** versioned (`partner-v1`, `coach-v2`); the version is stored on each session.
 - **Crisis path:** shared detector runs on device (a crisis message never leaves the phone) and again on the server. The partner model can also flag with a marker. The session gets locked, 988 resources are shown, and coaching doesn't resume. Tests: `npm test`, 7/7 passing.
@@ -17,7 +18,7 @@ Last updated: 2026-10-14
 
 ## Next
 
-1. Owner runs the app in Expo Go on the iPhone in demo mode (README → "Run on your iPhone").
+1. Owner runs the app in Expo Go on the iPhone in demo mode. Owner is phone-only right now, so the QR flow is blocked. Option being set up: publish with EAS Update from the cloud container. That needs expo.dev hosts allowed in the environment network policy plus an EXPO_TOKEN environment variable. UNKNOWN whether App Store Expo Go opens EAS Update links for this project; verify.
 2. Owner creates the Supabase project and Anthropic API key, then we deploy (README → "Connect the real backend").
 3. Real end-to-end test on the phone: finish a scenario, see a debrief.
 4. Measure tokens per session from `usage` and report cost per practice session.
@@ -25,8 +26,6 @@ Last updated: 2026-10-14
 
 ## Open decisions
 
-- Apple enrollment: individual or company (D-U-N-S).
-- Repo: the app currently lives in `social-coach/` inside `mitch578/github-slideshow`. A dedicated repo would be cleaner.
 - iOS bundle identifier: placeholder `com.REPLACE_ME.norm` in app.json.
 - App Store name: "Norm" is the app name (owner decision 2026-10-14). UNKNOWN whether "Norm" is free on the App Store; names must be unique. Fallbacks to check when creating the App Store Connect record: "Norm: Social Coach", "Norm – AI Social Coach".
 - Prompt location: the spec says `/server/prompts/`. They live in `supabase/functions/_shared/prompts/` because the Edge Function deploy bundles from `supabase/functions/` (ASSUMPTION: importing from outside that folder may not bundle; not tested).
